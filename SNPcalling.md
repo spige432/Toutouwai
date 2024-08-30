@@ -15,7 +15,7 @@ there are  different lanes with one single  barcode file:
 ```bash
 #!/bin/sh
 # in source_files
-zcat  SQ0890_CD21AANXX_s_4_fastq.txt.gz | head -n 1000000 > lane4.fq # one lane
+zcat SQ2427_H33J5DRX5_s_1_fastq.txt.gz | head -n 1000000 > lane4.fq # one lane
 zcat SQ0890_CDMWVANXX_s_1_fastq.txt.gz | head -n 1000000 > lane1.fq # another lane
 ```
 
