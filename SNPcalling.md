@@ -141,7 +141,7 @@ First alignment for every sample using BWA.
 ```
 mkdir alignment #Create an alignment folder where the bam files go
 cd alignment #from inside there run align.sh
-COPY IN THE REFERENCE GENOME
+COPY IN THE REFERENCE GENOME. then unzip it using gunzip
 ```
 
 
