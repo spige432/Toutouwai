@@ -34,11 +34,9 @@ We are using cutadapt.  -a is the adapter -m is sequence minimum length, we'll d
 ```
 module load cutadapt
 cutadapt  -a AGATCGGAAGAGC  -m 30    -o lane427_1_cleaned.fq lane427_1.fq
-
-cutadapt  -a AGATCGGAAGAGC    -m 30  -o SQ0890_CDMWVANXX_s_1_cleaned.fastq SQ0890_CDMWVANXX_s_1_fastq.txt.gz
 ````
 it wasn't necessary to run this on all four of them becuase they actually all use the same adapter
-CCGAGATCGGAAGAGC
+**CCGAGATCGGAAGAGC**
 
  I run fastqc again on those trimmed files to confirm that no adapter is left.
 
@@ -46,9 +44,8 @@ CCGAGATCGGAAGAGC
 ```
 ##I think the first line here for the correct document:
 fastqc lane427_1_cleaned.fq
-fastqc SQ0890_CDMWVANXX_s_1_cleaned.fastq
 ```
-then I did the cleaning process with cutadapt for the entire document (took 29 minutes 3 only took lik 8 mins but i was sitting somewhere else?)
+then I did the cleaning process with cutadapt for the entire document (took 29 minutes 3 only took like 8 mins but i was sitting somewhere else?)
 ```
 cutadapt  -a CCGAGATCGGAAGAGC  -m 30    -o entire_lane427_1_cleaned.fq  SQ2427_H33J5DRX5_s_1_fastq.txt.gz
 cutadapt  -a CCGAGATCGGAAGAGC  -m 30    -o entire_lane427_2_cleaned.fq  SQ2427_H33J5DRX5_s_2_fastq.txt.gz
@@ -71,6 +68,8 @@ cd: going into the file
 ln -s copying over data that is cleaned from the adapters, making a link
 goal is have the two files from the lane cleaned in that raw folder 
 ```
+**Redo line for correct source file name here**
+
 #!/bin/sh
 mkdir raw427 samples427
 cd raw427
@@ -78,18 +77,13 @@ ln -s ../source_files/SQ0890_CD*cleaned* .
 cd ..
 ```
 
-```
-#!/bin/sh
-mkdir rawSQ0323 samplesSQ0323 
-cd rawSQ0323
-ln -s ../source_files/SQ0323_CD*cleaned* .
-cd ..
-```
 and add barcode file into the main source_files folder
 
 I am now ready to run process_radtags to demultiplex, once for each lane.         
 
 ```
+**The following  notes are almost the same but one has NIRObarcodes and one is just barcodes. Investigate which was actually used/how the two are different**
+
 #!/bin/sh
 module load Stacks
 process_radtags   -p raw427/ -o samples427/ -b NIRObarcodes427.txt -e pstI -r -c -q --inline-null
@@ -100,14 +94,8 @@ process_radtags   -p raw428/ -o samples428/ -b NIRObarcodes428.txt -e pstI -r -c
 process_radtags   -p raw427/ -o samples427/ -b barcodes427.txt -e pstI -r -c -q --inline-null
 process_radtags   -p raw428/ -o samples428/ -b barcodes428.txt -e pstI -r -c -q --inline-null
 
-
-process_radtags   -p rawSQ0890/ -o samplesSQ0890/ -b barcodes_SQ0890.txt -e pstI -r -c -q --inline-null
 ```
 
-```
-#!/bin/sh
-process_radtags   -p rawSQ0323/ -o sampleSQ0323/ -b barcodes_SQ0890.txt -e pstI -r -c -q --inline-null
-```
 
 We now have one file per sample per lane. Some samples are on both lanes, they need to combined together, by simply adding all the reads from both lanes. 
 
@@ -142,13 +130,18 @@ First alignment for every sample using BWA.
 mkdir alignment #Create an alignment folder where the bam files go
 cd alignment #from inside there run align.sh
 COPY IN THE REFERENCE GENOME. then unzip it using gunzip
+
+**I tried to compare it with both the black robin and the eastern yellow robin (EYR). Aligning with the black robin wasn't ideal becuase their genome doesn't have sex chromosomes specifically marked. The alignment with the EYR was interesting at first because they have the sex chromosomes specifically marked but the reason they're known is because the sex chromosomes are strange in that species**
+**So when it comes to sexing how should I move forward with this? Which species should I use for my alignment for the rest of my project? I really value sexing them because it will 
+be helpful to Kevin (as well as add a level of data to my dataset), but maybe it isn't absolutely required? I could always try to work strictly off of the field sexing that Kevin did if this falls through but I need the sex data.**
 ```
 
 
 The complete list of commands is in [align.sh](align.sh).
+**I need to post my specific align.sh document to my repository. This document has all of the sample names and a code to index them with a reference genome**
 
 Then, SNP calling can be done with Stacks using a popmap file ([example](example))
-
+popmap file is made from an excel document; all sample names in the first column, "pop" in the second column, then save as a txt 
 
 ```
 #!/bin/sh
@@ -170,21 +163,41 @@ Obtained >100k SNPs. Let's explore sample quality.
 I will re-run populations keeping only good SNPs found in more than 80% of individuals.
 
 ```
-populations -P output_refmap/ -M popmap.txt  --vcf  -r 0.8
+populations -P eyr_output_refmap/ -M 40popmap.txt  --vcf  -r 0.4
+**I believe this was done at 0.4 based on an email from Ludo on 7October24**
 ```
 
-We still have 64528 SNPs for the 190 samples. We could filter more but that seems adequate for this project.
-
+"Removed 127319 loci that did not pass sample/population constraints from 160266 loci.
+Kept 32947 loci, composed of 2512449 sites; 216237 of those sites were filtered, 32768 variant sites remained.
+    2290254 genomic sites, of which 12331 were covered by multiple loci (0.5%).
+Mean genotyped sites per locus: 69.89bp (stderr 0.10)."
 
 Let's see if some individuals are really poor or not.
 
 
 ```
+Ludo's code:
 cd output_refmap
 module load VCFtools
 vcftools --vcf populations.snps.vcf --missing-indv ## google vcftools
 sort -k 4n out.imiss | less # it will show you all the individuals sorted by missing data
+
+
+my code that I think this is relevant to:
+vcftools --vcf blackrobinoutput.vcf   --chr JAHLSL010000009.1  --out z2  --geno-depth --minDP 2 --max-missing 0.8
+
+vcftools --vcf blackrobinoutput.vcf   --chr JAHLSL010000013.1  --out autosome  --geno-depth --minDP 2 --max-missing 0.8
+
+Eyr 
+vcftools --vcf eyr.snps.vcf  --chr QKXG01000089.1 --chr QKXG01000127.1 --chr QKXG01000146.1  --out z2  --geno-depth --minDP 2 --max-missing 0.8
+
+vcftools --vcf blackrobinoutput.vcf   --chr JAHLSL010000013.1  --out autosome  --geno-depth --minDP 2 --max-missing 0.8
+
+Remove four samples that have less than 65% coverage
+
 ```
+? After filtering, kept 1687 out of a possible 215293 Sites
+? 423 individuals
 
 I remove .... because they have more than X.... missing data 
 
