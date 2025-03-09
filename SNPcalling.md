@@ -125,6 +125,16 @@ done
 ### Alignment and variant calling
 
 First alignment for every sample using BWA. 
+```
+module load BWA
+src=../locmetsamples_concat
+# bwa index GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna
+bwa_db=GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna
+for sample in $files
+do echo $sample
+    bwa mem -t 2 $bwa_db $src/${sample}.fq.gz  |   samtools view -b | samtools sort --threads 4 > ${sample}.bam
+done
+```
 
 ```
 mkdir alignment #Create an alignment folder where the bam files go
@@ -201,14 +211,35 @@ Remove four samples that have less than 65% coverage
 
 I remove .... because they have more than X.... missing data 
 
-I remove it and create a [popmap_clean.txt](popmap_clean.txt) and re-filter the data.
+I remove it and create a [popmap_clean.txt](popmap_clean.txt) and re-filter the data with populations 
+
 
 ```
 populations -P output_refmap/ -M popmap_clean.txt  --vcf  -r 0.8
+Run this later and change popmap from all indiv to just the ones that will be kept (under 60%) indivi that has less than 60% of sites., the 0.8 is removing from sites not individuals
+file will be in output refmap called populations.snp.vcp
 ```
+
 
 Now you have your SNPs
 
 
 We found xxx SNPs for xxx samples.
 
+depth of coverage. sire is a or T, a single indiv has reads matching there and as there are more reads the alleles will become more accurate. it ends up looking like those with lower coverage are less diverse 
+individual coverage vs indiv coverage. out treshhold that makes it impossible to underestimate heterozygosity. 
+
+--het
+oHOM observed homozygotes
+n is number of sites
+F is inbreeding coefficient from HW comparing them
+ohom/N is y axis on the indiv vs coef
+
+explore mean depth and/or the 0.8 (a little) in order to find on r where the lowest value is that the correlation is not there 
+
+in R
+ihom - ohom  all divided by ehom proportion of heterozygotes
+
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --het
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --depth
+explore minDP # in order to find smallest number wehre correlation isnt there
