@@ -243,3 +243,26 @@ ihom - ohom  all divided by ehom proportion of heterozygotes
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --het
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --depth
 explore minDP # in order to find smallest number wehre correlation isnt there
+
+```
+module load VCFtools
+vcftools --vcf blackrobinoutput.vcf --max-missing 0.8
+#kept 125729 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --max-missing 0.4
+#kept 215293 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --max-missing 0.5
+#kept 192030 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --missing-indv
+#kept 215293 out of a possible 215293 Sites
+sort -k 4n out.imiss | less
+#opens document in order of col 4
+vcftools --vcf blackrobinoutput.vcf --minDP 100 --max-missing 0.8
+#kept 11 out of a possible 215293 Sites (bad)
+vcftools --vcf blackrobinoutput.vcf --minDP 2 --max-missing 0.8
+#kept 99609 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8
+#kept 57393 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --het
+#kept 57393 out of a possible 215293 Sites
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --depth
+#kept 57393 out of a possible 215293 Sites
