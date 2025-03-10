@@ -246,6 +246,7 @@ explore minDP # in order to find smallest number wehre correlation isnt there
 
 ```
 module load VCFtools
+/nesi/nobackup/uoo04226/robins/source_files/output_refmap
 vcftools --vcf blackrobinoutput.vcf --max-missing 0.8
 #kept 125729 out of a possible 215293 Sites
 vcftools --vcf blackrobinoutput.vcf --max-missing 0.4
