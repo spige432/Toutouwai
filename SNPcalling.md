@@ -241,7 +241,9 @@ in R
 ihom - ohom  all divided by ehom proportion of heterozygotes
 
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --het
+
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --depth
+
 explore minDP # in order to find smallest number wehre correlation isnt there
 
 ```
