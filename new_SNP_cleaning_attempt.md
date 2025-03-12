@@ -4,8 +4,8 @@ in sourcefiles
 module load Stacks
 mkdir newoutput_refmap
 ref_map.pl --samples alignment --popmap 429popmap.txt -T 8  -o newoutput_refmap
-I think it worked?
 ```
+
 ```
 populations -P newoutput_refmap/ -M 429popmap.txt  --vcf
 
