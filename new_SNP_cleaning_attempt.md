@@ -16,7 +16,9 @@ Mean genotyped sites per locus: 84.62bp (stderr 0.02).
 
 Population summary statistics (more detail in populations.sumstats_summary.tsv):
   pop: 185.43 samples per locus; pi: 0.14946; all/variant/polymorphic sites: 53961185/759419/759419; private alleles: 0"
+```
 
+```
 populations -P newoutput_refmap/ -M 429popmap.txt  --vcf  -r 0.8
 
 "Removed 576294 loci that did not pass sample/population constraints from 637698 loci.
