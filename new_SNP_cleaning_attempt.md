@@ -74,3 +74,16 @@ vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --het
 vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --depth
 "kept 95018 out of a possible 198474 Sites"
 ```
+view these files using less
+
+use the values in R in order to create a graph, explore mean depth and/or the 0.8 (a little) in order to find on r where the lowest value is that the correlation is not there
+
+--het oHOM observed homozygotes 
+
+n is number of sites 
+
+F is inbreeding coefficient from HW comparing them 
+
+ohom/N is y axis on the indiv vs coef
+
+ehom - ohom all divided by ehom proportion of heterozygotes
