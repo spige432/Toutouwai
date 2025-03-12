@@ -40,6 +40,7 @@ MA13724 and BP16299 (these two were included in the six that were removed on my 
 ```
 
 created new popmap with the two samples removed
+
 newcleanpopmap.txt uploaded to source files
 
 ```
