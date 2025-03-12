@@ -1,28 +1,3 @@
-# SNPcalling.md
-
-The raw data is available on the High Capacity Storage of Otago University. Contact dutoit.ludovic@gmail.com for access.
-
-We are looking at two lanes with the same individuals across both lanes I believe.
-
-## Quality control
-
-The data is signle-end. *Let's subsample it to see how it looks.*
-
-there are  different lanes with one single  barcode file:
-
-
-
-```bash
-#!/bin/sh
-# in source_files
-zcat SQ2427_H33J5DRX5_s_1_fastq.txt.gz | head -n 1000000 > lane427_1.fq # one lane
-zcat SQ2427_H33J5DRX5_s_2_fastq.txt.gz | head -n 1000000 > lane427_2.fq # another lane
-zcat SQ2428_H33J5DRX5_s_1_fastq.txt.gz | head -n 1000000 > lane428_1.fq
-zcat SQ2428_H33J5DRX5_s_2_fastq.txt.gz | head -n 1000000 > lane428_2.fq
-```
-
-
-
 ```
 12March25 12:00 2 cores 6 or 8 GB
 in sourcefiles
