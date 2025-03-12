@@ -183,6 +183,13 @@ Mean genotyped sites per locus: 84.62bp (stderr 0.02).
 
 Population summary statistics (more detail in populations.sumstats_summary.tsv):
   pop: 185.43 samples per locus; pi: 0.14946; all/variant/polymorphic sites: 53961185/759419/759419; private alleles: 0
+
+populations -P newoutput_refmap/ -M 429popmap.txt  --vcf  -r 0.8
+
+Removed 576294 loci that did not pass sample/population constraints from 637698 loci.
+Kept 61404 loci, composed of 4928235 sites; 784935 of those sites were filtered, 196806 variant sites remained.
+    4155965 genomic sites, of which 27439 were covered by multiple loci (0.7%).
+Mean genotyped sites per locus: 68.13bp (stderr 0.08).
 ```
 
 Obtained >100k SNPs. Let's explore sample quality.
