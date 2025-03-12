@@ -36,7 +36,9 @@ After filtering, kept 196806 out of a possible 196806 Sites"
 cd newoutput_refmap
 module load VCFtools
 vcftools --vcf populations.snps.vcf --missing-indv
-sort -k 4n out.imiss | less # shows all individuals sorted by missing data
+sort -k 4n out.imiss | less
+
+shows all individuals sorted by missing data
 higher number is worse. Of my 429 samples I have two that are above 0.6
 MA13724 and BP16299 (these two were included in the six that were removed on my last running of this)
 ```
