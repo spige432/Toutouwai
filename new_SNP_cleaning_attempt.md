@@ -66,7 +66,6 @@ Is it unusual that this removed more loci? I would think at this stage that it w
 I put in the "clean" popmap with the ones above 0.6 removed
 
 ```
-still to run
 module load VCFtools
 cd newoutput_refmap/
 vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --het
