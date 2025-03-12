@@ -44,10 +44,9 @@ created new popmap with the two samples removed
 newcleanpopmap.txt uploaded to source files
 
 ```
-What Ludo told me to run on Monday ->
+What Ludo told me to run on Monday in source files ->
 module purge
 module load Stacks
-in source files:
 populations -P newoutput_refmap/ -M newcleanpopmap.txt  --vcf  -r 0.8
 
 "Removed 575893 loci that did not pass sample/population constraints from 637698 loci.
