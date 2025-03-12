@@ -1,5 +1,5 @@
 ```
-12March25 12:00 2 cores 6 or 8 GB
+12March25
 in sourcefiles
 module load Stacks
 mkdir newoutput_refmap
@@ -7,7 +7,7 @@ ref_map.pl --samples alignment --popmap 429popmap.txt -T 8  -o newoutput_refmap
 I think it worked?
 ```
 ```
-12march25 populations -P newoutput_refmap/ -M 429popmap.txt  --vcf
+populations -P newoutput_refmap/ -M 429popmap.txt  --vcf
 
 "Removed 0 loci that did not pass sample/population constraints from 637698 loci.
 Kept 637698 loci, composed of 54051543 sites; 0 of those sites were filtered, 759419 variant sites remained.
