@@ -160,11 +160,30 @@ module load Stacks
 mkdir output_refmap
 ref_map.pl --samples alignment --popmap popmap.txt -T 8  -o output_refmap
 ```
+```
+12March25 12:00 2 cores 6 or 8 GB
+in sourcefiles
+module load Stacks
+mkdir newoutput_refmap
+ref_map.pl --samples alignment --popmap 429popmap.txt -T 8  -o newoutput_refmap
+I think it worked?
+```
 
 
 Let's run populations alone to obtain a vcf and explore data quality:
 
 populations -P output_refmap/ -M popmap.txt  --vcf 
+```
+12march25 populations -P newoutput_refmap/ -M 429popmap.txt  --vcf
+
+Removed 0 loci that did not pass sample/population constraints from 637698 loci.
+Kept 637698 loci, composed of 54051543 sites; 0 of those sites were filtered, 759419 variant sites remained.
+    46376676 genomic sites, of which 7027407 were covered by multiple loci (15.2%).
+Mean genotyped sites per locus: 84.62bp (stderr 0.02).
+
+Population summary statistics (more detail in populations.sumstats_summary.tsv):
+  pop: 185.43 samples per locus; pi: 0.14946; all/variant/polymorphic sites: 53961185/759419/759419; private alleles: 0
+```
 
 Obtained >100k SNPs. Let's explore sample quality.
 
@@ -191,6 +210,8 @@ cd output_refmap
 module load VCFtools
 vcftools --vcf populations.snps.vcf --missing-indv ## google vcftools
 sort -k 4n out.imiss | less # it will show you all the individuals sorted by missing data
+higher number is worse. Of my 423 samples I have six that are above 0.6
+HA13273, TA114678, KA16441, PU16217, MA13724, BP16299
 
 
 my code that I think this is relevant to:
@@ -214,10 +235,20 @@ I remove .... because they have more than X.... missing data
 I remove it and create a [popmap_clean.txt](popmap_clean.txt) and re-filter the data with populations 
 
 
+
 ```
 populations -P output_refmap/ -M popmap_clean.txt  --vcf  -r 0.8
 Run this later and change popmap from all indiv to just the ones that will be kept (under 60%) indivi that has less than 60% of sites., the 0.8 is removing from sites not individuals
 file will be in output refmap called populations.snp.vcp
+
+result (it matches the error at the end of the populations.log file):
+..
+JAHLSL010000103.1 
+Error: Bad consensus length.
+Error: Locus 467917
+Error: Bad GStacks files.
+Aborted.
+
 ```
 
 
