@@ -88,4 +88,4 @@ ohom/N is y axis on the indiv vs coef
 
 ehom - ohom all divided by ehom proportion of heterozygotes
 
-"You want proportion of heterozygotes. E is expected under hardy weinberg, o is observed. You want to use oHom (the number of homozygotes) and the total number of sites to get at the proportion of total sites thar are heterozygotes."
+"You want proportion of heterozygotes. E is expected under hardy weinberg, o is observed. You want to use oHom (the number of homozygotes) and the total number of sites to get at the proportion of total sites that are heterozygotes."
