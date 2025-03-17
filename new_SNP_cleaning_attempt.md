@@ -74,27 +74,7 @@ vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --het
 vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --depth
 "kept 95018 out of a possible 198474 Sites"
 ```
-view these files using less
 
-use the values in R in order to create a graph, explore mean depth and/or the 0.8 (a little) in order to find on r where the lowest value is that the correlation is not there
-
---het oHOM observed homozygotes 
-
-n is number of sites 
-
-F is inbreeding coefficient from HW comparing them 
-
-ohom/N is y axis on the indiv vs coef
-
-ehom - ohom all divided by ehom proportion of heterozygotes
-
-"You want proportion of heterozygotes. E is expected under hardy weinberg, o is observed. You want to use oHom (the number of homozygotes) and the total number of sites to get at the proportion of total sites that are heterozygotes."
-
-y axis: ohom / total sites (N) = 0.925 percentage of sites that are homozygous
-1 - x = 0.0748 proportion of sites that are heterozygous
-
-y axis: (N - oHOM) / N sites = propotion of sites that are heterozygotes
-x axis: depth
 ```
 1. Download out.het and out.idepth files
 2. import them into R
