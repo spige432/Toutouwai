@@ -76,6 +76,7 @@ vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --depth
 ```
 
 ```
+17March25
 1. Download out.het and out.idepth files
 2. import them into R
 3. run the following code on R
@@ -87,3 +88,15 @@ dep5.8[dep5.8[, 3] <7, 1]                                                       
 4. run the following code on NeSI to recode the VCF file with the remaining 416 samples. [I had to go back to my folder called "output_refmap" as opposed to "newoutput_refmap" that I have been using becuase that is where the blackrobinoutput.vcf is. I don't think this will make a difference.]
 
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278
+```
+When I used "vcftools --vcf populations.snps.vcf --missing-indv" and "sort -k 4n out.imiss | less", this is the list of the lowest quality. The ones I removed are **bold**. I thought it was interesting that they're not just the bottom 7 in order.
+TM13676
+**PU14637
+TM13681**
+PU14631
+PU14646
+**HA13278
+TA114678
+HA13273
+PU16217
+KA16441**
