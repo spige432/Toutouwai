@@ -89,7 +89,7 @@ dep5.8[dep5.8[, 3] <7, 1]                                                       
 
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278
 ```
-When I used "vcftools --vcf populations.snps.vcf --missing-indv" and "sort -k 4n out.imiss | less", this is the list of the lowest quality. The ones I removed are **bold**. I thought it was interesting that they're not just the bottom 7 in order.
+When I used "vcftools --vcf populations.snps.vcf --missing-indv" and "sort -k 4n out.imiss | less", this is the list of the most missing data. The ones I removed are **bold**. I thought it was interesting that they're not just the bottom 7 in order.
 TM13676     0.28
 
 **PU14637    0.31**
