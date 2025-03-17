@@ -215,7 +215,7 @@ Let's see if some individuals are really poor or not.
 Ludo's code:
 cd output_refmap
 module load VCFtools
-vcftools --vcf populations.snps.vcf --missing-indv ## google vcftools
+vcftools --vcf populations.snps.vcf --missing-indv ## google vcftools (try to trun this again, see if some have a lot of missing data lookimg to see if any are less than 0.6)
 sort -k 4n out.imiss | less # it will show you all the individuals sorted by missing data
 higher number is worse. Of my 423 samples I have six that are above 0.6
 HA13273, TA114678, KA16441, PU16217, MA13724, BP16299
@@ -307,3 +307,36 @@ vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --het
 #kept 57393 out of a possible 215293 Sites
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --depth
 #kept 57393 out of a possible 215293 Sites
+
+view these files using less
+
+use the values in R in order to create a graph, explore mean depth and/or the 0.8 (a little) in order to find on r where the lowest value is that the correlation is not there
+
+--het oHOM observed homozygotes
+
+n is number of sites
+
+F is inbreeding coefficient from HW comparing them
+
+ohom/N is y axis on the indiv vs coef
+
+ehom - ohom all divided by ehom proportion of heterozygotes
+
+"You want proportion of heterozygotes. E is expected under hardy weinberg, o is observed. You want to use oHom (the number of homozygotes) and the total number of sites to get at the proportion of total sites that are heterozygotes."
+
+y axis: ohom / total sites (N) = 0.925 percentage of sites that are homozygous 1 - x = 0.0748 proportion of sites that are heterozygous
+
+y axis: (N - oHOM) / N sites = propotion of sites that are heterozygotes x axis: depth
+
+on my graphs, the lower ones on depth are showing a correlation as they're basically sort of slanted up and those are the ones that are homozygous becuase they have fewer depth od reads, so they affect the average heterozygosity propotion negetively and make it innaccuarte
+get to a place where how much you sequenced is not exxactly telling how heterozy they are - so remove lowest dp
+
+R showed that hauturu/little barrier island populations nad Kapiti island have lower diversity
+these two groups are furthest away from each other on the PCA that was done last year
+
+play with the depth again likek try down to 3 and make sure the values are the same on both commands
+then remove specific ones from files that might still haev low depth from R and remove
+then remove with indv missing from earlier code
+
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv INDV --remove-indv INDV
+vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278
