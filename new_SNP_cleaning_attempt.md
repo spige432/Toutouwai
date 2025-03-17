@@ -90,22 +90,22 @@ dep5.8[dep5.8[, 3] <7, 1]                                                       
 vcftools --vcf blackrobinoutput.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278
 ```
 When I used "vcftools --vcf populations.snps.vcf --missing-indv" and "sort -k 4n out.imiss | less", this is the list of the lowest quality. The ones I removed are **bold**. I thought it was interesting that they're not just the bottom 7 in order.
-TM13676
+TM13676     0.28
 
-**PU14637**
+**PU14637    0.31**
 
-**TM13681**
+**TM13681    0.33**
 
-PU14631
+PU14631     0.33
 
-PU14646
+PU14646     0.34
 
-**HA13278**
+**HA13278    0.40**
 
-**TA114678**
+**TA114678   0.46**
 
-**HA13273**
+**HA13273    0.52**
 
-**PU16217**
+**PU16217    0.52**
 
-**KA16441**
+**KA16441    0.52**
