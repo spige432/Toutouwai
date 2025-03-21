@@ -111,3 +111,13 @@ PU14646     0.34
 **PU16217    0.52**
 
 **KA16441    0.52**
+```
+vcftools --vcf out.recode.vcf --missing-indv
+kept 420/420 individuals
+kept 98464/98464 possible sites
+sort -k 4n out.imiss | less
+3 individuals had F_miss less than 0.6
+PU14646, TM13676, PU14631
+vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278 --remove-indv PU14646 --remove-indv TM13676 --remove-indv PU14631
+Kept 417/427 Individuals
+Kept 99412/198474 possible sites
