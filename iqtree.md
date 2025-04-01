@@ -35,3 +35,5 @@ bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o renametest.vcf 
 ```
 
 I need to **erase the remaining 4 UK samples** as they cannot be attributed to any location
+```
+vcftools --vcf nenametest.vcf --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278 --remove-indv PU14646 --remove-indv TM13676 --remove-indv PU14631  --remove-indv MA13724 --remove-indv BP16299 --remove-indv UK00-R19 --remove-indv UKB-BM --remove-indv UK13236 --remove-indv UK120700
