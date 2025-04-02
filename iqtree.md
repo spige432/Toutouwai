@@ -57,4 +57,31 @@ module load IQ-TREE
 iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
 ```
 "TOTAL      10.06%  128 sequences failed composition chi2 test (p-value<5%; df=3)"
-Nesi crashed (default settings, 1 hour)
+
+Nesi crashed (default settings, 1 hour) it says 11073 MB RAM (10 GB) is required
+
+below is copied from Ash to try to do a slurm job
+```
+#!/bin/bash -e
+#SBATCH --job-name=iqtree 
+#SBATCH --time=10:00:00      # Walltime (HH:MM:SS) 48h
+#SBATCH --mem=64G            # Memory in MB
+#SBATCH --account=uoo04226
+#SBATCH --cpus-per-task=8
+
+module purge
+
+module load IQ-TREE	
+
+iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
+
+
+echo "run complete"
+
+
+```
+
+
+
+
+
