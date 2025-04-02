@@ -42,7 +42,7 @@ Kept 413 samples
 mv out.recode.vcf recode.renamed.vcf #renames the file
 (out.log file was changed for original output from populations.snps.vcf. I ended up moving it to a folder called /subfolder and reran the code as written above so that it would recode it and keep a version that actually had the samples removed)
 ```
----
+
 Convert the SNPs to a phylogenetic input format
 ```
 Download files and upload "vcf2phylip.py" to my working directory
