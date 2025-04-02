@@ -19,6 +19,7 @@ iqtree2 -nt 16 -s populations.snps.min4.phy -st DNA -m GTR+G -bb 1000  -pre infe
 ```
 download FIGtree to visualise it.
 
+-------------------------------------------------------------------------------------
 
 01April25
 
@@ -30,10 +31,30 @@ renamedsamples.txt - upload to newoutput_refmap
 ```
 in newoutput_refmap:
 module load BCFtools
-bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o nenametest.vcf #practice attempt
-bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o renametest.vcf #I haven't done this yet
+bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o renamed.snps.vcf #I haven't done this yet
 ```
 
 I need to **erase the remaining 4 UK samples** as they cannot be attributed to any location
 ```
-vcftools --vcf nenametest.vcf --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278 --remove-indv PU14646 --remove-indv TM13676 --remove-indv PU14631  --remove-indv MA13724 --remove-indv BP16299 --remove-indv UK00-R19 --remove-indv UKB-BM --remove-indv UK13236 --remove-indv UK120700
+module load VCFtools #perhaps run this somehwere else so the out.recode.vcf doesn't override the other old one.
+vcftools --vcf renamed.snps.vcf --recode --remove-indv PU14637 --remove-indv KA16441 --remove-indv PU16217 --remove-indv TA114678 --remove-indv TM13681 --remove-indv HA13273 --remove-indv HA13278 --remove-indv PU14646 --remove-indv TM13676 --remove-indv PU14631  --remove-indv MA13724 --remove-indv BP16299 --remove-indv UK00-R19 --remove-indv UKB-BM --remove-indv UK13236 --remove-indv UK120700
+Kept 413 samples
+mv out.recode.vcf recode.renamed.vcf #renames the file
+(out.log file was changed for original output from populations.snps.vcf. I ended up moving it to a folder called /subfolder and reran the code as written above so that it would recode it and keep a version that actually had the samples removed)
+```
+
+Convert the SNPs to a phylogenetic input format
+```
+Download files and upload "vcf2phylip.py" to my working directory
+python vcf2phylip.py --input recode.renamed.vcf
+```
+download FigTree (https://github.com/rambaut/figtree/releases v1.4.4)
+
+download java (Version 8 Update 441)
+
+```
+module load IQ-TREE
+iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
+```
+"TOTAL      10.06%  128 sequences failed composition chi2 test (p-value<5%; df=3)"
+Nesi crashed (default settings, 1 hour)
