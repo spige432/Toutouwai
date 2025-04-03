@@ -31,7 +31,7 @@ renamedsamples.txt - upload to newoutput_refmap
 ```
 in newoutput_refmap:
 module load BCFtools
-bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o renamed.snps.vcf #I haven't done this yet
+bcftools reheader -s renamedsamples.txt populations.snps.vcf  -o renamed.snps.vcf 
 ```
 
 I need to **erase the remaining 4 UK samples** as they cannot be attributed to any location
