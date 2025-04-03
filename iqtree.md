@@ -55,6 +55,9 @@ download java (Version 8 Update 441)
 ```
 module load IQ-TREE
 iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
+
+iqtree2 -nt 4 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
+
 ```
 "TOTAL      10.06%  128 sequences failed composition chi2 test (p-value<5%; df=3)"
 
