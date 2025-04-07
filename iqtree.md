@@ -63,9 +63,13 @@ iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferr
 Nesi crashed (default settings, 1 hour) it says 11073 MB RAM (10 GB) is required
 
 I ran it with 4 cores, 64 GB, back to back sessions from Thursday 
+
 After 1000 interations ->
+
 Log-likelihood cutoff on original alignment: -3775522.060
+
 NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.959
+
 NOTE: UFBoot does not converge, continue at least 100 more iterations
 
 Quit to add black robin refernce as a line to the VCF for the root of the tre
