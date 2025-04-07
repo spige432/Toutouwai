@@ -54,33 +54,44 @@ download java (Version 8 Update 441)
 
 ```
 module load IQ-TREE
+cd testing/robins/source_files/newoutput_refmap/subfolder/
 iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
-
-iqtree2 -nt 4 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
 
 ```
 "TOTAL      10.06%  128 sequences failed composition chi2 test (p-value<5%; df=3)"
 
 Nesi crashed (default settings, 1 hour) it says 11073 MB RAM (10 GB) is required
 
-below is copied from Ash to try to do a slurm job
+I ran it with 4 cores, 64 GB, back to back sessions from Thursday 
+After 1000 interations ->
+Log-likelihood cutoff on original alignment: -3775522.060
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.959
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+
+Quit to add black robin refernce as a line to the VCF for the root of the tre
 ```
+less recode.renamed.vcf  | grep  "^#" -v | cut -f 4 > blackrobinasonecolumn.txt # grab the column
+tr '\n' ',' < blackrobinasonecolumn.txt > blackrobinasonerow.txt #make it a row with commas (weird middle step)
+sed -s "s/,//g" blackrobinasonerow.txt | sed -s "s/^/blackrobin\t/g"   > onelineblackrobin.txt # remove the commas and add the sample name
+cat onelineblackrobin.txt >> recode.renamed.min4.phy
+```
+
+Trying to do a slurm job
+```
+cd testing/robins/source_files/newoutput_refmap/subfolder/
+nano myjob.sl
+
 #!/bin/bash -e
-#SBATCH --job-name=iqtree 
-#SBATCH --time=10:00:00      # Walltime (HH:MM:SS) 48h
-#SBATCH --mem=64G            # Memory in MB
+#SBATCH --job-name=iq-tree # job name (shows up in the queue)
+#SBATCH --time=120:00:00      # Walltime (HH:MM:SS)
+#SBATCH --mem=64G          # Memory 
+#SBATCH --cpus-per-task=16
 #SBATCH --account=uoo04226
-#SBATCH --cpus-per-task=8
 
-module purge
 
-module load IQ-TREE	
 
+module load IQ-TREE
 iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferred
-
-
-echo "run complete"
-
 
 ```
 
