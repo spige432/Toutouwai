@@ -62,7 +62,7 @@ iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre inferr
 
 Nesi crashed (default settings, 1 hour) it says 11073 MB RAM (10 GB) is required
 
-I ran it with 4 cores, 64 GB, back to back sessions from Thursday 
+I ran it with 4 cores, 64 GB, back to back sessions from Thursday-Monday
 
 After 1000 interations ->
 
