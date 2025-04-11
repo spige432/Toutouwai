@@ -96,7 +96,7 @@ nano myjob.sl
 
 
 module load IQ-TREE
-iqtree2 -nt 16 -s recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre withBRref
+iqtree2 -nt 16 -s 414recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre withBRref
 
 ```
 
