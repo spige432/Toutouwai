@@ -78,8 +78,13 @@ less recode.renamed.vcf  | grep  "^#" -v | cut -f 4 > blackrobinasonecolumn.txt 
 tr '\n' ',' < blackrobinasonecolumn.txt > blackrobinasonerow.txt #make it a row with commas (weird middle step)
 sed -s "s/,//g" blackrobinasonerow.txt | sed -s "s/^/blackrobin\t/g"   > onelineblackrobin.txt # remove the commas and add the sample name
 cat onelineblackrobin.txt >> recode.renamed.min4.phy
-save and edit in notepad to make the header 414 198474, reupload as 414recode.renamed.min4.phy 
 ```
+Phylip doesn't run becuase the header must be update
+```
+sed -i -e "1d" recode.renamed.min4.phy  #removes first line
+sed -i '1i 414 198474' recode.renamed.min4.phy #replaces first line, rewritten
+```
+I reran this but my file is called "scary.phy" because I was running it on a rest run and then I just let it go
 
 Trying to do a slurm job
 ```
