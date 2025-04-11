@@ -78,6 +78,7 @@ less recode.renamed.vcf  | grep  "^#" -v | cut -f 4 > blackrobinasonecolumn.txt 
 tr '\n' ',' < blackrobinasonecolumn.txt > blackrobinasonerow.txt #make it a row with commas (weird middle step)
 sed -s "s/,//g" blackrobinasonerow.txt | sed -s "s/^/blackrobin\t/g"   > onelineblackrobin.txt # remove the commas and add the sample name
 cat onelineblackrobin.txt >> recode.renamed.min4.phy
+save and edit in notepad to make the header 414 198474, reupload as 414recode.renamed.min4.phy 
 ```
 
 Trying to do a slurm job
@@ -87,7 +88,7 @@ nano myjob.sl
 
 #!/bin/bash -e
 #SBATCH --job-name=iq-tree # job name (shows up in the queue)
-#SBATCH --time=120:00:00      # Walltime (HH:MM:SS)
+#SBATCH --time=5-00:00:00       # Walltime (HH:MM:SS)
 #SBATCH --mem=64G          # Memory 
 #SBATCH --cpus-per-task=16
 #SBATCH --account=uoo04226
