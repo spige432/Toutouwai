@@ -106,8 +106,4 @@ iqtree2 -nt 16 -s scary.phy -st DNA -m GTR+G -bb 1000  -pre withBRref
 ```
 
 
-```
-vcftools --vcf recode.renamed.vcf  --recode --keep bloodsexing.txt #bloodsexing contains the 328 samples that have blood sexes completed
-mv out.recode.vcf bloodsex.vcf
-
 
