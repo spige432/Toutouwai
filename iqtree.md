@@ -99,9 +99,9 @@ nano myjob.sl
 #SBATCH --account=uoo04226
 
 
-
+cd testing/robins/source_files/newoutput_refmap/subfolder/
 module load IQ-TREE
-iqtree2 -nt 16 -s 414recode.renamed.min4.phy -st DNA -m GTR+G -bb 1000  -pre withBRref
+iqtree2 -nt 16 -s scary.phy -st DNA -m GTR+G -bb 1000  -pre withBRref
 
 ```
 
