@@ -79,10 +79,11 @@ tr '\n' ',' < blackrobinasonecolumn.txt > blackrobinasonerow.txt #make it a row 
 sed -s "s/,//g" blackrobinasonerow.txt | sed -s "s/^/blackrobin\t/g"   > onelineblackrobin.txt # remove the commas and add the sample name
 cat onelineblackrobin.txt >> recode.renamed.min4.phy
 ```
-Phylip doesn't run becuase the header must be update
+Phylip doesn't run becuase the header must be updated before it will run again
 ```
 sed -i -e "1d" recode.renamed.min4.phy  #removes first line
 sed -i '1i 414 198474' recode.renamed.min4.phy #replaces first line, rewritten
+iqtree2 -nt 16 -s scary.phy -st DNA -m GTR+G -bb 1000  -pre withBRref #changed name for output
 ```
 I reran this but my file is called "scary.phy" because I was running it on a rest run and then I just let it go
 
