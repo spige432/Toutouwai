@@ -11,4 +11,15 @@ Weir and Cockerham weighted Fst estimate: 0.047463
 After filtering, kept 198474 out of a possible 198474 Sites
 
 
+vcftools --vcf recode.renamed.vcf --weir-fst-pop popTA.txt --weir-fst-pop popTM.txt --out TAvsTMtest --recode
+
+
 ```
+
+data <- read.table("TAvsTM.weir.fst", header = TRUE)
+plot(data$POS, data$WEIR_AND_COCKERHAM_FST,
+     xlab="Position",
+     ylab= "Pairwise Fst",
+     main= "Pairwise Fst Across the Genome",
+     pch= ".",
+     col= "blue")
