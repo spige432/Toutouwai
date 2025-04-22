@@ -18,13 +18,13 @@ When comparing the Fst of Tiritiri compated to all the other populations, I beli
 ```
 Fst of Tiritiri Matangi vs other pops, ascending		Fst of Hauturu vs other pops, ascending		
 		TMvsX (mean)	TMvsX (weighted)				HAvsX (mean)	HAvsX (weighted)
-Tāwharanui 	0.028		0.047			Pureora			0.059	0.238
-Pureora		0.030		0.064			Mangatutu		0.094	0.269
-Mangatutu	0.035		0.064			Bushy Park		0.107	0.276
-Bushy Park	0.047		0.086			Tiritiri Matangi	0.111	0.292
-Rotokare	0.077		0.117			Tāwharanui 		0.116	0.299
-Kapiti		0.100		0.243			Kapiti			0.183	0.418
-Hauturu		0.111		0.292			Rotokare		0.208	0.327
+Tāwharanui 	0.028		0.047			Pureora			0.059		0.238
+Pureora		0.030		0.064			Mangatutu		0.094		0.269
+Mangatutu	0.035		0.064			Bushy Park		0.107		0.276
+Bushy Park	0.047		0.086			Tiritiri Matangi	0.111		0.292
+Rotokare	0.077		0.117			Tāwharanui 		0.116		0.299
+Kapiti		0.100		0.243			Kapiti			0.183		0.418
+Hauturu		0.111		0.292			Rotokare		0.208		0.327
 ```
 I haven't done all of the Fst comparisons yet becuase I'm not sure if this is the best way to approach the data
 1) how would I add this into a dataframe that can be a heatmap in R
