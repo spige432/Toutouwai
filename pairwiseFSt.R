@@ -1,0 +1,36 @@
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+
+
+pop_names <- c("BP", "HA", "KA", "MA", "PU", "RO", "TA", "TM")
+fst_matrix <- matrix(NA,
+                     nrow = length(pop_names), ncol = length(pop_names),
+                     dimnames = list(pop_names, pop_names))
+
+for(i in 1:nrow(mean_fst)) {
+  fst_matrix[mean_fst$pop1[i], mean_fst$pop2[i]] <- mean_fst$mean_Fst[i]
+  fst_matrix[mean_fst$pop2[i], mean_fst$pop1[i]] <- mean_fst$mean_Fst[i]
+}
+
+fst_matrix[lower.tri(fst_matrix)] <- NA
+
+
+fst_long <- fst_matrix %>%
+  as.data.frame() %>%
+  rownames_to_column("pop1") %>%
+  pivot_longer(-pop1, names_to = "pop2", values_to = "fst") %>%
+  mutate(is_diag = pop1 == pop2)
+
+fst_long$pop1 <- factor(fst_long$pop1, levels = (unique(fst_long$pop1)))
+fst_long$pop2 <- factor(fst_long$pop2, levels = (unique(fst_long$pop2)))
+
+fst_heat <- ggplot(fst_long, aes(pop1, pop2, fill = fst)) +
+  geom_tile() +
+  geom_tile(aes(alpha = ifelse(is_diag, 1, 0)), fill = "gray") +
+  geom_text(aes(label = round(fst, 3)), size = 3, colour = "white") +
+  scale_fill_continuous(na.value = "white") +
+  labs(title = "Pairwise Fst") +
+  labs(x = "", y = "") +
+  theme_classic() 
