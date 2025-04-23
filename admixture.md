@@ -10,7 +10,7 @@ python vcf2bed.py -i recode.renamed.vcf    -o admixture.bed
 
    File "/nesi/nobackup/uoo04226/robins/source_files/admixture/vcf2bed.py", line 31, in "module"
   
-     firstTabIndex = line.index('\t');
+     ##firstTabIndex = line.index('\t');
     
                      ^^^^^^^^^^^^^^^^
                     
