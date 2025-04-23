@@ -33,4 +33,7 @@ fst_heat <- ggplot(fst_long, aes(pop1, pop2, fill = fst)) +
   scale_fill_continuous(na.value = "white") +
   labs(title = "Pairwise Fst") +
   labs(x = "", y = "") +
-  theme_classic() 
+  theme_classic()  +
+  theme(legend.position = "none")
+
+fst_heat
