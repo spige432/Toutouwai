@@ -2,16 +2,14 @@
 mkdir admixture
 cp recode.renamed.vcf ../../admixture/
 ```
-upload vcf2bed.py from https://github.com/Nolan1324/VCF-to-BED
+make vcf a bed file (https://github.com/laurabenestan/Admixture)
 ```
-python vcf2bed.py -i recode.renamed.vcf    -o admixture.bed
+module load VCFtools
+module load PLINK
+vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
+vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
+plink2 --tped admixture.tped --tfam admixture.tfam --make-bed --out admixtureanalysis
+for K in echo $(seq 29) ; do admixture --cv=10 -B2000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
 ```
- Traceback (most recent call last):
-
-   File "/nesi/nobackup/uoo04226/robins/source_files/admixture/vcf2bed.py", line 31, in "module"
-  
-     firstTabIndex = line.index('\t');
-    
-                     ^^^^^^^^^^^^^^^^
-                    
- ValueError: substring not found
+I think I don't have access to the admixture module becuase I can't find it anywhere
+alternate pipeline option?: https://github.com/stevemussmann/admixturePipeline/blob/master/README.md
