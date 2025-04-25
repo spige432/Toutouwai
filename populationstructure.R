@@ -41,7 +41,7 @@ filtered_het5.8[filtered_het5.8$INDV=="UK12243", "INDV"] <- "HA12243"
 filtered_het5.8$population <- substr(filtered_het5.8$INDV, 1, 2)
 
 #Compare F across populations
-#library(ggplot2)
+library(ggplot2)
 ggplot(data = filtered_het5.8) +
   geom_boxplot (mapping = aes(x = population, y = F)) +
   geom_boxplot(mapping = aes(x = population, y = F, color = population), data = filtered_het5.8)
