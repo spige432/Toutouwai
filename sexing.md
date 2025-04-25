@@ -86,6 +86,8 @@ ggsave("ratioW.pdf")
 14April
 vcftools --vcf recode.renamed.vcf  --recode --keep bloodsexing.txt #fieldsexing contains the 328 samples that have field sexes completed
 mv out.recode.vcf fieldsex.vcf #changes the name
-
-
+cp fieldsexing.txt ../../sexing/
+cp fieldsex.vcf  ../../sexing/
+rm fieldsexing.txt
+rm fieldsex.vcf 
 
