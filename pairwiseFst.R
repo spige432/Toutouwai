@@ -3,6 +3,12 @@ library(dplyr)
 library(tidyr)
 library(tidyverse)
 
+#I created an excel of each population compared against the other one time with the columns pop1, pop2, and mean_Fst
+
+library(readxl)
+mean_fst <- read_excel("~/Gemma Uni/Thesis data/mean_fst.xlsx")
+View(mean_fst)
+
 
 pop_names <- c("BP", "HA", "KA", "MA", "PU", "RO", "TA", "TM")
 fst_matrix <- matrix(NA,
@@ -28,12 +34,11 @@ fst_long$pop2 <- factor(fst_long$pop2, levels = (unique(fst_long$pop2)))
 
 fst_heat <- ggplot(fst_long, aes(pop1, pop2, fill = fst)) +
   geom_tile() +
-  geom_tile(aes(alpha = ifelse(is_diag, 1, 0)), fill = "gray") +
+  geom_tile(aes(alpha = ifelse(is_diag, 1, 0)), show.legend = F, fill = "gray") +
   geom_text(aes(label = round(fst, 3)), size = 3, colour = "white") +
   scale_fill_continuous(na.value = "white") +
   labs(title = "Pairwise Fst") +
   labs(x = "", y = "") +
-  theme_classic()  +
-  theme(legend.position = "none")
+  theme_classic() 
 
 fst_heat
