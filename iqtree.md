@@ -111,5 +111,14 @@ sbatch myjob.sl
 
 ```
 
+28April25
+
+I will run a new IQ-TREE with only the first 10k bases because the first tree I made didn't converge at all and the root of the black robin reference was extremely small. The idea is to get it to converge better if the sample size is smaller, as well as be able to manipulate the data easier because it won't take as long to process.
+```
+cut -c-10011 scary.phy > 10ksites.phy #make it more than 10k to account for the sample name
+sed -i -e "1d" 10ksites.phy           #delete first line
+sed -i '1i 414 10000' 10ksites.phy    #rewrite first line to only include first 10k
+module load IQ-TREE
+iqtree2 -nt 16 -s 10ksites.phy -st DNA -m GTR+G -bb 1000  -pre 10ksites
 
 
