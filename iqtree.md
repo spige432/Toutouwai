@@ -120,5 +120,11 @@ sed -i -e "1d" 10ksites.phy           #delete first line
 sed -i '1i 414 10000' 10ksites.phy    #rewrite first line to only include first 10k
 module load IQ-TREE
 iqtree2 -nt 16 -s 10ksites.phy -st DNA -m GTR+G -bb 1000  -pre 10ksites
-
+```
+the black robin outgroup root is still really short. Ludo's suggestion was to take the black robin reference genome and use the first 500 bp to replace the last 500 bp. 
+1) download onelineblackrobin.txt
+2) make the blackrobin have only 10k bases
+3) replace the last 500 with the first 500, keeping the 500 in place
+4) save as evilblackrobin.txt
+5) upload to nesi
 
