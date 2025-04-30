@@ -127,4 +127,15 @@ the black robin outgroup root is still really short. Ludo's suggestion was to ta
 3) copy the first 500 onto the end, making it 10k bases and keeping the first 500 in place
 4) save as evilblackrobin.txt
 5) upload to nesi
-
+```
+cd testing/robins/source_files/newoutput_refmap/subfolder/
+cp 10ksites.phy 500blackrobin.phy
+sed -i '$ d' 500blackrobin.phy #removes last line
+cat evilblackrobin.txt >> 500blackrobin.phy   #adds it to the end
+module load IQ-TREE
+iqtree2 -nt 16 -s 500blackrobin.phy -st DNA -m GTR+G -bb 1000  -pre 500blackrobin
+```
+ look up model finder plus in -st
+ -o blackrobin
+```
+iqtree2 -nt 16 -s 10ksites.phy -st DNA -m MFP -bb 1000 -o blackrobin  -pre mfp_o_10k
