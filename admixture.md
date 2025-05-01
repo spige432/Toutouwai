@@ -32,3 +32,10 @@ for K in echo $(seq 9) ; do admixture --cv=10 -B -j8 admixtureanalysis.bed $K | 
 ```
 I think I don't have access to the admixture module becuase I can't find it anywhere
 alternate pipeline option?: https://github.com/stevemussmann/admixturePipeline/blob/master/README.md
+
+```
+module load Miniconda3
+conda init
+#open new terminal tab
+conda activate /nesi/project/uoo04226/admixture_env
+```
