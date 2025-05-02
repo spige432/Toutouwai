@@ -170,3 +170,19 @@ JAHLSL010013506.1:45650-45650
 JAHLSL010013506.1:45657-45657
 JAHLSL010013507.1:6476-6476
 ```
+```
+grep -v "^##" recode.renamed.vcf > nohead.vcf
+cut -f 1,2,3 nohead.vcf > 2columns.vcf #take the first 3 columns only
+grep -v '^##' 2columns.vcf | awk '$3=$2' > 3columns.vcf #copy the second column on top of the third column
+awk '{print $1 ":" $2 "-" $3}' 3columns.vcf > 1column.vcf
+```
+remove first row manually and make it into a txt file (faidxfile.txt)
+```
+samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r faidxfile.txt | grep "^>" -v > blackrobincol.txt
+tr '\n' ',' < blackrobincol.txt > blackrobinrow.txt
+sed -s "s/,//g" blackrobinrow.txt | sed -s "s/^/blackrobin\t/g"   > realblackrobin.txt
+```
+in iq tree folder (subfolder)
+```
+cp scary.phy phywithrealBR.phy
+
