@@ -143,3 +143,28 @@ iqtree2 -nt 16 -s 500blackrobin.phy -st DNA -m GTR+G -bb 1000  -pre 500blackrobi
 iqtree2 -nt 16 -s 10ksites.phy -st DNA -m MFP -bb 1000 -o blackrobin  -pre mfp_o_10k
 ```
 it picked TVM+F+I+R7
+
+Rewrite the black robin genotype
+1) find black robin reference genome file
+2) index it
+3) find current/correct/updated VCF of my samples
+4) use the first two columns there to create a nano file like
+    JAHL:Position#-Sameposition#
+will probably require a loop, start with one and use it to form the others?
+
+```
+find -name *fna
+cd alignment/
+less -S GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna
+module load SAMtools
+samtools faidx GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna  #index it
+nano testreions.txt raversi_NRM_v1_genomic.fna JAHLSL010013506
+samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r testreions.txt | grep "^>" -v
+```
+```
+nano testregions.txt
+
+JAHLSL010013506.1:45650-45650
+JAHLSL010013506.1:45657-45657
+JAHLSL010013507.1:6476-6476
+```
