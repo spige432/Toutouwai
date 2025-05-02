@@ -141,6 +141,8 @@ mkdir alignment #Create an alignment folder where the bam files go
 cd alignment #from inside there run align.sh
 COPY IN THE REFERENCE GENOME. then unzip it using gunzip
 
+https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/025/920/805/GCA_025920805.1_Ptraversi_NRM_v1/
+
 **I tried to compare it with both the black robin and the eastern yellow robin (EYR). Aligning with the black robin wasn't ideal becuase their genome doesn't have sex chromosomes specifically marked. The alignment with the EYR was interesting at first because they have the sex chromosomes specifically marked but the reason they're known is because the sex chromosomes are strange in that species**
 **So when it comes to sexing how should I move forward with this? Which species should I use for my alignment for the rest of my project? I really value sexing them because it will 
 be helpful to Kevin (as well as add a level of data to my dataset), but maybe it isn't absolutely required? I could always try to work strictly off of the field sexing that Kevin did if this falls through but I need the sex data.**
