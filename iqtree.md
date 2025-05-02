@@ -21,7 +21,9 @@ download FIGtree to visualise it.
 
 -------------------------------------------------------------------------------------
 
--- 01April25
+http://www.iqtree.org/doc/Command-Reference
+
+01April25
 
 I need to **rename my sample names** to attribute 4 "UK" (unknown) samples to be from Hauturu, and edit one to be from KA (previously had no location becuase of a typo)
 
