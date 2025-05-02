@@ -149,7 +149,9 @@ Rewrite the black robin genotype
 2) index it
 3) find current/correct/updated VCF of my samples
 4) use the first two columns there to create a nano file like
+   
     JAHL:Position#-Sameposition#
+   
 will probably require a loop, start with one and use it to form the others?
 
 ```
