@@ -141,3 +141,5 @@ iqtree2 -nt 16 -s 500blackrobin.phy -st DNA -m GTR+G -bb 1000  -pre 500blackrobi
  -o blackrobin
 ```
 iqtree2 -nt 16 -s 10ksites.phy -st DNA -m MFP -bb 1000 -o blackrobin  -pre mfp_o_10k
+```
+it picked TVM+F+I+R7
