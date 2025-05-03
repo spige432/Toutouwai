@@ -185,4 +185,10 @@ sed -s "s/,//g" blackrobinrow.txt | sed -s "s/^/blackrobin\t/g"   > realblackrob
 in iq tree folder (subfolder)
 ```
 cp scary.phy phywithrealBR.phy
+sed -i '$ d'  phywithrealBR.phy
+cat realblackrobin.txt >> phywithrealBR.phy
+```
+```
+module load IQ-TREE
+iqtree2 -nt 16 -s phy -st DNA -m TVM+F+I+R7 -bb 1000 -o blackrobin  -pre realBR
 
