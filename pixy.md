@@ -12,3 +12,12 @@ module load Miniconda3
 conda init
 conda activate /nesi/project/uoo04226/pixy/
 ```
+SNP refiltering
+```
+module load VCFtools
+vcftools --vcf 413.final.vcf --max-maf 0 --minQ 10 --minDP 10 --max-missing 1 --recode --out invariant_filtered
+
+--max-maf #kept 1115 / 198474 sites
+--minQ 10 #kept 0 / 198474 sites
+--minDP 10 #kept 198474 / 198474 sites
+--max-missing 1 #kept 21630 / 198474 sites
