@@ -190,7 +190,8 @@ cat realblackrobin.txt >> phywithrealBR.phy
 ```
 ```
 module load IQ-TREE
-iqtree2 -nt 16 -s [PHY] -st DNA -m TVM+F+I+R7 -bb 1000 -o blackrobin  -pre realBR
+iqtree2 -nt 16 -s phywithrealBR.phy -st DNA -m TVM+F+I+R7 -bb 1000 -o blackrobin -pre treerealBR
+
 
 10k file to explore with phylip files that are 10k long
 iqtree2 -nt 16 -s 10kBRtest.phy -st DNA -m TVM+F+I+R7 -bb 1000 -o blackrobin -pre real_o_tvm #MFP given method, define -o
