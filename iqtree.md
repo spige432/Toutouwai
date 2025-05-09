@@ -198,4 +198,8 @@ iqtree2 -nt 16 -s 10kBRtest.phy -st DNA -m TVM+F+I+R7 -bb 1000 -o blackrobin -pr
 > BR branch is really long before the NIR tree begins, also really fork, idk if this even matters
 iqtree2 -nt 16 -s GTR_G_BR1.phy -st DNA -m GTR+G -bb 1000 -o blackrobin -pre GTR_G_BR1 #old method used, BR is first sample, -o defined
 iqtree2 -nt 16 BR1_no_o.phy -st DNA -m GTR+G -bb 1000  -pre BR1_no_o #old method used, BR first sample, no -o defined
-
+```
+```
+module load IQ-TREE
+cd testing/robins/source_files/iqtree/gtrg
+iqtree2 -nt 16 -s phywithrealBR.phy -st DNA -m GTR+G -bb 1000 -o blackrobin -pre gtrgrealBR
