@@ -42,3 +42,19 @@ cd testing/robins/source_files/admixture/admixjob/
 sbatch admix.sl
 ```
 7 day job submitted 3:54 pm Tuesday
+
+**admix.sl**
+-----
+```
+#!/bin/bash -e
+#SBATCH --job-name=admix  # job name (shows up in the queue)
+#SBATCH --time=7-00:00:00      # Walltime (HH:MM:SS)
+#SBATCH --mem=64G          # Memory 
+#SBATCH --cpus-per-task=16
+#SBATCH --account=uoo04226
+
+
+module purge >/dev/null 2>&1
+
+for K in echo $(seq 9) ; do admixture --cv=10 -B1000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
+```
