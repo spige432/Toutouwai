@@ -25,7 +25,7 @@ vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
 vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
 plink2 --tped admixture.tped --tfam admixture.tfam --make-bed --out admixtureanalysis
 for K in echo $(seq 9) ; do admixture --cv=10 -B2000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
-#K max = n + 1 = 29
+#K max = n + 1 = 9
 #If it runs out of time, try regular -B to do 200 bootstraps
 for K in echo $(seq 9) ; do admixture --cv=10 -B -j8 admixtureanalysis.bed $K | tee log${K}.out; done
 
@@ -33,9 +33,14 @@ for K in echo $(seq 9) ; do admixture --cv=10 -B -j8 admixtureanalysis.bed $K | 
 I think I don't have access to the admixture module becuase I can't find it anywhere
 alternate pipeline option?: https://github.com/stevemussmann/admixturePipeline/blob/master/README.md
 
+
+in the cluster
 ```
 module load Miniconda3
 conda init
-#open new terminal tab
-conda activate /nesi/project/uoo04226/admixture_env
+conda activate /nesi/project/uoo04226/new_admixture_env
+cd testing/robins/source_files/admixture/admixjob/
+#must contain .bed .bim and .fam
+sbatch admix.sl
 ```
+7 day job submitted 3:54 pm Tuesday
