@@ -24,10 +24,8 @@ module load PLINK
 vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
 vcftools --vcf recode.renamed.vcf --plink-tped --out admixture
 plink2 --tped admixture.tped --tfam admixture.tfam --make-bed --out admixtureanalysis
-for K in echo $(seq 9) ; do admixture --cv=10 -B2000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
+for K in echo $(seq 9) ; do admixture --cv=10 -B1000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
 #K max = n + 1 = 9
-#If it runs out of time, try regular -B to do 200 bootstraps
-for K in echo $(seq 9) ; do admixture --cv=10 -B -j8 admixtureanalysis.bed $K | tee log${K}.out; done
 
 ```
 I think I don't have access to the admixture module becuase I can't find it anywhere
