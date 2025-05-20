@@ -43,7 +43,7 @@ sbatch admix.sl
 ```
 7 day job submitted 3:54 pm Tuesday
 
-**admix.sl**
+**admix.sl** (submitted job)
 -----
 ```
 #!/bin/bash -e
