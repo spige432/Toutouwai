@@ -125,6 +125,8 @@ done
 ### Alignment and variant calling
 
 First alignment for every sample using BWA. 
+
+https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/025/920/805/GCA_025920805.1_Ptraversi_NRM_v1/
 ```
 module load BWA
 src=../locmetsamples_concat
