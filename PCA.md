@@ -10,3 +10,11 @@ plink2 --bfile PCA --pca --out pca_results
 mkdir clump
 cp recode.renamed.vcf clump/recode.renamed.vcf
 cd clump/
+vcftools --vcf recode.renamed.vcf --keep 320_noKAHA.txt --recode --out nokaha
+```
+320_noKAHA.txt contains all samples that are not Kapiti or Hauturu
+```
+plink2 --vcf nokaha.recode.vcf  --make-bed --out PCA
+plink2 --bfile PCA --pca --out pca_results
+```
+use pca_results.eigenval and pca_results.eigenvec in R following PCAreal.R
