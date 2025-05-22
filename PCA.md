@@ -5,5 +5,8 @@ plink2 --vcf recode.renamed.vcf  --make-bed --out PCA
 plink2 --bfile PCA --pca --out pca_results
 ```
 ## Redo PCA without outliers (Kapiti and Hauturu) to look at closely grouped sections
-wefwe
 ```
+/testing/robins/source_files/PCA
+mkdir clump
+cp recode.renamed.vcf clump/recode.renamed.vcf
+cd clump/
