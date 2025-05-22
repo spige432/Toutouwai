@@ -63,3 +63,53 @@ filteredPCA2 <- ggplot(eigenvec_filtered2, aes(x = V3, y = V4, color = Populatio
 
 print(filteredPCA2)
 
+
+
+
+
+
+
+
+#Redo PCA with reanalyzed samples, excluding Kapiti and Hauturu
+#Import the eigenvec and eigenval files that were from NeSI
+
+#Edit the dataframe and make a scree plot
+percent_var <- (eigenval_nokaha$V1 / sum(eigenval_nokaha$V1)) * 100
+
+eigenval <- add_column(eigenval_nokaha, principal_component = 1:10, .before = "V1")
+
+plot(eigenval_nokaha, type = "b",
+     xlab = "Principal Component",
+     ylab = "Eigenvalue",
+     main = "Scree Plot")
+
+eigenval_nokaha$V1/sum(eigenval_nokaha$V1)
+
+
+#Edit the dataframe and make a PCA
+eigenvec_nokaha$V1 <- substr(eigenvec_nokaha$V2, 1, 2)
+names(eigenvec_nokaha)[1] <- "Population"
+eigenvec_nokaha[eigenvec_nokaha$Population=="BP", "Population"] <- "Bushy Park"
+eigenvec_nokaha[eigenvec_nokaha$Population=="MA", "Population"] <- "Mangatutu"
+eigenvec_nokaha[eigenvec_nokaha$Population=="PU", "Population"] <- "Pureora"
+eigenvec_nokaha[eigenvec_nokaha$Population=="RO", "Population"] <- "Rotokare"
+eigenvec_nokaha[eigenvec_nokaha$Population=="TA", "Population"] <- "Tawharanui"
+eigenvec_nokaha[eigenvec_nokaha$Population=="TM", "Population"] <- "Tiritiri Matangi"
+
+
+
+
+PCA <- ggplot(eigenvec_nokaha, aes(x = V3, y = V4, color = Population)) +
+  geom_point(size = 2) +
+  xlab(paste0("PC1: ", round(percent_var[1], 2), "% variance")) +
+  ylab(paste0("PC2: ", round(percent_var[2], 2), "% variance"))
+
+print(PCA)
+
+#notes from old/wrong zoomed in plot
+
+#MA13596 and MA13595 are within the TA/TM cluster (in TA cluster on tree)
+#those are the first two MA samples, but taken near other bands of the same numbers 
+#TM11694 is all alone (clusters together with TM in tree); 
+#TM934 and TM993 are within the BP, MA, PU, RO cluster. These band numbers are different than all the others, taken at a different time?
+#BP and RO extremely high crossover
