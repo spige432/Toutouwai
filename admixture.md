@@ -58,3 +58,8 @@ module purge >/dev/null 2>&1
 
 for K in echo $(seq 9) ; do admixture --cv=10 -B1000 -j8 admixtureanalysis.bed $K | tee log${K}.out; done
 ```
+in admixture/admixjob
+```
+grep -h CV log*.out>cross_validation.txt
+#for the following line, the guide said it would be a .tfam file but I only have a .fam file
+cut -f 1 admixtureanalysis.fam > id_admixture.txt
