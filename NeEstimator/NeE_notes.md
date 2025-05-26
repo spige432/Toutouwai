@@ -39,7 +39,15 @@ populations -P newoutput_refmap/ -M 413_UKs_popmap.txt --vcf -O neestimator/outp
 
 #in neestimator/output
 mv populations.snps.vcf ../
+```
+I had to rename the samples to be not UK. 413renamed.txt includes a list of the old names on the left, and the new name for it on the right.
+```
+cd neestimator
+module load BCFtools
+bcftools reheader -s 413renamed.txt populations.snps.vcf  -o renamed.snps.vcf
+```
 
+```
 chmod +x NeEstimator.sh
 ./NeEstimator.sh populations.snps.vcf 10000 test/
 
