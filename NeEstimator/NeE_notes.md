@@ -46,7 +46,7 @@ maf= 0         -----kept all
 ```
 
 ```
-chmod +x NeEstimator.sh
+chmod +x NeEstimator.sh #this gives it permission to run
 ./NeEstimator.sh populations.snps.vcf 10000 test/
 
 
