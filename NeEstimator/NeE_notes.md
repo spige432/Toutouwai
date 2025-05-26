@@ -29,11 +29,13 @@ maf= 0  -----kept all
 ```
 -----
 
-413_noUK_popmap.txt is my list of all 413 used populations, corrected names, no unknowns, all listed as "pop"
+413_UKs_popmap.txt is my list of all 413 used populations, not corrected names, includes unknowns, all listed as "pop"
+
+I did this because my files used to create the VCF still have the old sample names and I decided it would be easier to change the sample names after they are created into the VCF
 ```
 #in source files
 module load Stacks
-populations -P newoutput_refmap/ -M 413_noUK_popmap.txt --vcf -O neestimator/output/
+populations -P newoutput_refmap/ -M 413_UKs_popmap.txt --vcf -O neestimator/output/
 
 #in neestimator/output
 mv populations.snps.vcf ../
