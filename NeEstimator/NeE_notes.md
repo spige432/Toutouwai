@@ -22,9 +22,9 @@ vcftools --vcf populations.snps.vcf --minDP 10 --maxDP 100 --max-missing 1 --min
 
 
 minDP=10 -----kept all
-maxDP = 100 # should probably be twice the average coverage -----kept all
-max_missing=1 # no missing data allowed, confusing -----kept 21469 out of a possible 753541 Sites
-minQ=20 # We first removed all genotypes with a Phred-scaled genotype quality score <20 #Kardos et al. 2017 -----kept 0 out of a possible 753541 Sites
+maxDP = 100 -----kept all
+max_missing=1 -----kept 21469 out of a possible 753541 Sites
+minQ=20 -----kept 0 out of a possible 753541 Sites
 maf= 0  -----kept all
 ```
 -----
