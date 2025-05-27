@@ -63,3 +63,15 @@ in admixture/admixjob
 grep -h CV log*.out>cross_validation.txt
 #for the following line, the guide said it would be a .tfam file but I only have a .fam file
 cut -f 1 admixtureanalysis.fam > id_admixture.txt
+```
+Graphing in R
+-----
+Error in `scale_x_continuous()`:
+! Discrete values supplied to continuous scale.
+ℹ Example values: "K=1", "K=2", "K=3", "K=4", and "K=5"
+Run `rlang::last_trace()` to see where the error occurred.
+Warning message:
+The `size` argument of `element_rect()` is deprecated as
+of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+This warning is displayed once every 8 hours.
