@@ -66,6 +66,7 @@ cut -f 1 admixtureanalysis.fam > id_admixture.txt
 ```
 Graphing in R
 -----
+```
 Error in `scale_x_continuous()`:
 ! Discrete values supplied to continuous scale.
 ℹ Example values: "K=1", "K=2", "K=3", "K=4", and "K=5"
