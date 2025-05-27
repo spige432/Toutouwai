@@ -34,15 +34,18 @@ and I don't know what I would do instead of "import negotland_lib as ne" since t
 below is some of the code from within the script. Using it alone in VCFtools erases all sites so the filters must be changed
 ```
 vcftools --vcf populations.snps.vcf --minDP 10 --maxDP 100 --max-missing 1 --minQ 20 --maf 0
+vcftools --vcf populations.snps.vcf --max-missing 1  --maf 0.000001
 
 
 
 
 minDP=10       -----kept all
 maxDP = 100    -----kept all
-max_missing=1  -----kept 21469 out of a possible 753541 Sites
+max_missing=1  -----kept 21469 out of a possible 753541 Sites (watch out for less than 10k)
 minQ=20        -----kept 0 out of a possible 753541 Sites
-maf= 0         -----kept all
+maf= 0         -----kept all  try 0.000001 keeps only polymorh sites (or else you end up with monmorphic sites)
+(try only max missing and maf)
+filter the VCF by only one pop at a time and redo NeE
 ```
 
 ```
@@ -53,3 +56,7 @@ chmod +x NeEstimator.sh #this gives it permission to run
 
 ```
 Running into issues on NeEstimator.sh where I don't have some of the files
+```
+chmod u+x Ne2-1L
+./Ne2-1L i:info
+
