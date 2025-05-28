@@ -48,13 +48,16 @@ filter the VCF by only one pop at a time and redo NeE
 ```
 created VCF with only HA and then one with only KA by doing --keep
 ```
+vcftools --vcf NeE.renamed.vcf --keep HAonly.txt --out HAonly --recode
 vcftools --vcf HAonly.recode.vcf --max-missing 1  --maf 0.000001
 #After filtering, kept 58 out of 58 Individuals
 #After filtering, kept 22011 out of a possible 198474 Sites
-
-vcftools --vcf KAonly.recode.vcf --max-missing 1  --maf 0.000001
-#After filtering, kept 35 out of 35 Individuals
-#After filtering, kept 10987 out of a possible 198474 Sites
+./NeEstimator.sh HAonly.recode.vcf 10000 HA/
+#download .dat file (TMonly.recode.vcf_10000.dat) and upload it to NeEstimator GUI
+#Run it as GENEPOP, only Linkage disequillibrium -> random mating
+#create parameter files, upload output "info" file into proper folder on NeSI (if needed)
+#Run Ne and view results
+#Upload LD.txt and NoDat.txt files to NeSI in the corresponding folder
 ```
 ```
 chmod +x NeEstimator.sh #this gives it permission to run
