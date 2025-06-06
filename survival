@@ -1,0 +1,3 @@
+module load VCFtools
+vcftools --vcf populations.snps.vcf --keep DNSindivs.txt --out DNSindivs --recode
+vcftools --vcf populations.snps.vcf --keep Survivedindivs.txt --out Survivedindivs --recode
