@@ -14,15 +14,15 @@ vcftools --vcf populations.snps.vcf --keep Survivedindivs.txt --out Survivedindi
 ```
 
 ```
-**Proportion heterozygosity
+**Proportion heterozygosity**
 ```
 
 ```
-PCA with highlighted survival vs DNS
+**PCA with highlighted survival vs DNS**
 ```
 
 ```
-**Trends in survival in one vs multi-sources translocation
-**```
+**Trends in survival in one vs multi-sources translocation**
+```
 
 ```
