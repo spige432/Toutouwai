@@ -26,3 +26,11 @@ vcftools --vcf populations.snps.vcf --keep Survivedindivs.txt --out Survivedindi
 ```
 
 ```
+**rerunning everything with the samples marked as the destination instead of the source**
+```
+create SORLO folder
+mv vcfs (Surv and dns) into there and use BCFtools to reheader/rename it using the SORLOrename.txt
+recode vcf to contain SORLOsurv and SORLOdns
+re-call het and dep to go into R
+
+
