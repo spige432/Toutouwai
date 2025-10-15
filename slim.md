@@ -7,3 +7,9 @@ conda create --prefix /nesi/project/uoo04226/admixture_env python=3.8
 conda activate /nesi/project/uoo04226/slim_env
 conda install conda-forge::slim
 #use "y" and enter to proceed
+
+slim -testEidos
+#7194
+slim -testSLiM
+#36807
+
