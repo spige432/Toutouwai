@@ -70,7 +70,8 @@ Running into issues on NeEstimator.sh where I don't have some of the files
 ```
 chmod u+x Ne2-1L
 ./Ne2-1L i:info
-
+```
+```
 06Jan26
 1. regular VCF with proper names and all samples
 2. upload quickfixpop.py and vcf2genepop.pl from ldutoit/GBS_dotterel (edit line 10 of quickfix)
@@ -84,3 +85,5 @@ chmod u+x Ne2-1L
 9. "Run Ne" creates LD and missing data files; add both of these to their population folder on NeSI
 10. Read files and extract the necessary Ne data
 
+Mangatutu came out infinite on some of the predictions so I reran it with the whole dataset, not just 10k -> turned up nothing besides the non-polymorphic loci
+10k of all ALL ran on NeEstimator but gave nothing but the non-polymorphic loci
