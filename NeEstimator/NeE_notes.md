@@ -71,3 +71,16 @@ Running into issues on NeEstimator.sh where I don't have some of the files
 chmod u+x Ne2-1L
 ./Ne2-1L i:info
 
+06Jan26
+1. regular VCF with proper names and all samples
+2. upload quickfixpop.py and vcf2genepop.pl from ldutoit/GBS_dotterel (edit line 10 of quickfix)
+3. module load VCFtools #version 0.1.15
+3. create VCFs with only one population at a time (I did not filter the VCF any extra)
+4. chmod +x NeEstimator.sh #this gives it permission to run
+5. ./NeEstimator.sh TMonly.recode.vcf 10000 TM/ #converts the file to genepop with a 10k subsample; repeat for all populations
+6. download TMonly.recode.vcf_10000.dat etc
+7. put the .dat files on NeEstimator 2.1 GUI with the input settings on GENEPOP and the methods selecting only linkage disequillibrium - model: Random Mating
+8. #"Create Parameter Files" to create info file; add the file into their population folder on NeSI #I don't really need this
+9. "Run Ne" creates LD and missing data files; add both of these to their population folder on NeSI
+10. Read files and extract the necessary Ne data
+
