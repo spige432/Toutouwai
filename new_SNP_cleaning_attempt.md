@@ -158,4 +158,20 @@ Mean genotyped sites per locus: 68.45bp (stderr 0.08).
 Population summary statistics (more detail in populations.sumstats_summary.tsv):
   pop: 386.21 samples per locus; pi: 0.064174; all/variant/polymorphic sites: 4294560/200998/200998; private alleles: 0
 Populations is done.
+###this makes populations.snps.vcf
 
+vcftools --vcf populations.snps.vcf --missing-indv
+After filtering, kept 409 out of 409 Individuals
+Outputting Individual Missingness
+After filtering, kept 200998 out of a possible 200998 Sites
+
+sort -k 4n out.imiss | less
+#the highest F_miss value is 0.236778 - which is good I think?
+
+module load VCFtools
+cd janoutput_refmap/
+vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --het #populations file is 2.4 gb 5:14 pm
+
+vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --recode #renamed the recode output jan.snps.vcf
+vcftools --vcf jan.recode.vcf --het #rename and download het file
+vcftools --vcf jan.recode.vcf --depth #rename and download 
