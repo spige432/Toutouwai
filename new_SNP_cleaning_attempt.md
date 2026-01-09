@@ -125,3 +125,28 @@ Kept 99412/198474 possible sites
 -----------------------------------
 ```
 09Jan26
+in source_files
+module load Stacks
+mkdir janoutput_refmap
+ref_map.pl --samples alignment --popmap 409popmap.txt -T 8  -o janoutput_refmap
+
+populations -P janoutput_refmap/ -M 409popmap.txt  --vcf
+Removed 0 loci that did not pass sample/population constraints from 635391 loci.
+Kept 635391 loci, composed of 53877331 sites; 0 of those sites were filtered, 754184 variant sites remained.
+    46167935 genomic sites, of which 6991993 were covered by multiple loci (15.1%).
+Mean genotyped sites per locus: 84.53bp (stderr 0.02).
+
+Population summary statistics (more detail in populations.sumstats_summary.tsv):
+  pop: 179.71 samples per locus; pi: 0.15031; all/variant/polymorphic sites: 53708913/754184/754184; private alleles: 0
+Populations is done.
+populations -P newoutput_refmap/ -M 409popmap.txt  --vcf  -r 0.8
+cd janoutput_refmap
+module load VCFtools
+vcftools --vcf populations.snps.vcf --missing-indv
+sort -k 4n out.imiss | less
+#look for ones that are above 0.6? Should be zero hopefully. If not create a new popmap with those removed?
+
+
+----------
+I redid ref_map.pl in janoutput_refmap and now running populations -P janoutput_refmap/ -M 409popmap.txt  --vcf  -r 0.8
+
