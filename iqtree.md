@@ -204,3 +204,16 @@ starting friday 4:30
 module load IQ-TREE
 cd testing/robins/source_files/iqtree/gtrg
 iqtree2 -nt 16 -s phywithrealBR.phy -st DNA -m GTR+G -bb 1000 -o blackrobin -pre gtrgrealBR
+```
+-------------------------
+09Jan26
+move jan.recode.vcf to iqtree folder
+upload vcf2phylip.py to iqtree
+python vcf2phylip.py --input jan.recode.vcf
+module load IQ-TREE
+edit to add in blackrobin as reference 
+```
+cat onelineblackrobin.txt >> jan.recode.min4.phy
+```
+manually edit the first line of the phy to change 409 to 410 to accomdate for the added black robin line
+the black robin line is the wrong length so redo ludo's method for grabbing it
