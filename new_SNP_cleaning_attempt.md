@@ -150,3 +150,12 @@ sort -k 4n out.imiss | less
 ----------
 I redid ref_map.pl in janoutput_refmap and now running populations -P janoutput_refmap/ -M 409popmap.txt  --vcf  -r 0.8
 
+Removed 571654 loci that did not pass sample/population constraints from 634393 loci.
+Kept 62739 loci, composed of 5041944 sites; 787684 of those sites were filtered, 200998 variant sites remained.
+    4265568 genomic sites, of which 28865 were covered by multiple loci (0.7%).
+Mean genotyped sites per locus: 68.45bp (stderr 0.08).
+
+Population summary statistics (more detail in populations.sumstats_summary.tsv):
+  pop: 386.21 samples per locus; pi: 0.064174; all/variant/polymorphic sites: 4294560/200998/200998; private alleles: 0
+Populations is done.
+
