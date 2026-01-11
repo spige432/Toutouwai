@@ -1,3 +1,4 @@
+```
 Compare to the yellow genome because they have the sex chromosomes known and mapping it with the black robin to know which are the sex chr. there
 Eyr take list of z chr and pick out of eyr fasta
 Take black robin fasta and compare with z fasta to find names of z linked scaffold in black robin
