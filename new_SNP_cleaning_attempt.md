@@ -171,6 +171,6 @@ sort -k 4n out.imiss | less
 module load VCFtools
 cd janoutput_refmap/
 
-vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --recode #renamed the recode output jan.snps.vcf
-vcftools --vcf jan.recode.vcf --het #rename and download het file
-vcftools --vcf jan.recode.vcf --depth #rename and download 
+vcftools --vcf populations.snps.vcf --minDP 5 --max-missing 0.8 --recode --out filtered 
+vcftools --vcf filtered.recode.vcf --minDP 5 --max-missing 0.8 --het #rename and download output
+vcftools --vcf filtered.recode.vcf --minDP 5 --max-missing 0.8 --depth #rename and download output
