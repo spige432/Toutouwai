@@ -23,7 +23,7 @@ awk '{print $1 ":" $2 "-" $3}' 3columns.vcf > 1column.vcf #adds a hyphen between
 samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r faidxfile.txt | grep "^>" -v > blackrobincol.txt #grabs the black robin genome
 tr '\n' ',' < blackrobincol.txt > blackrobinrow.txt
 sed -s "s/,//g" blackrobinrow.txt | sed -s "s/^/blackrobin\t/g"   > realblackrobin.txt
-cat realblackrobin.txt >> final.recode.min4.phy
+cat realblackrobin.txt >> final.recode.min4.phy #make sure it's on it's own line and at the end of the file
 #manually change the first line of the file to reflect there's now 410 samples (the added outgroup)
 ```
 Example of my job submitted on NeSI:
