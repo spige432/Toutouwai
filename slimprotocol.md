@@ -49,6 +49,12 @@ from no missing data whole vcf, i filtered just the MTSP pop
 3. for --het results, divide by the nubmer of sites that were in each individual vcf
 4. run 1-10 seeds on slim 
 
+
+for f in mtbhF1nm.seed*.vcf; do
+    vcftools --vcf "$f" --het --out "${f%.vcf}"
+done
+
+
 vcf_clean has 98474 sites
 
 
