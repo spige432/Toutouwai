@@ -2,23 +2,9 @@
 Make the VCF  fit the SLiM requirements as described by the SLiM manual.
 Make the reference genome have only the SNP sites that the VCF has.
 Filter the VCF by population, remove all missing data.
+Run the SLiM code with the reference genome and the appropriate VCF, changing the file name and individual number as needed.
 ```
-```
-#create VCF that has only one population at a time, and filtered according to the SLiM manual
-vcftools --vcf final.recode.vcf --keep PUonly.txt --minDP 5 --max-missing 0.8 --remove-indels --mac 1 --recode --out PUfiltered 
-# kept 62241 out of a possible 98474 Sites
 
-#filter the black robin genome to be the same sites as my SNPs using a VCF that has only one set of samples at a time
-grep -v "^##" final.recode.vcf > nohead.vcf
-cut -f 1,2,3 nohead.vcf > 2columns.vcf #take the first 3 columns only
-grep -v '^##' 2columns.vcf | awk '$3=$2' > 3columns.vcf #copy the second column to replace the third column
-awk '{print $1 ":" $2 "-" $3}' 3columns.vcf > 1column.vcf #adds a hyphen between the two sites (it is the same site, indicating I only want one letter at a time)
-#manually remove first row and make it into a txt file (faidxfile.txt)
-samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r faidxfile.txt > filteredBR.fa
-#no N sites to remove
-
-77132 out of range
-```
 Prepare VCF and black robin reference genome to be read by SLiM
 ```
 vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT --recode 
