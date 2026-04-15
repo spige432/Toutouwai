@@ -16,57 +16,55 @@ samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r faidxfile.txt > 
 ```
 Prepare VCF to be read by SLiM
 ```
-  203  vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT --recode 
-  216  vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT  --contig JAHLSL010000006.1 --recode
-  221  cat GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | tr N A > GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna
-  224  cat GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna | tr [:lower:] [:upper:] | tr N A  > GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna
-  228  module load SAMtools
-  230  samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna 
-  240  cat GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna | tr [:lower:] [:upper:] | tr N A |   sed -se  "s/^>JAHL[0-9A-Z.]+//g" | head -n 5
-  246    sed -s -E  "s/^>JAHLSL[0-9.]+//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
-  251    sed -s -e  "s/\PETR//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
-  256    sed -s -E  "s/\sPETR[A-Z0-9.\s]+//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
-  271    sed  's/PETR.*//' GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
-  276    sed  's/\sPETR.*//' GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | tr [:lower:] [:upper:] | tr N A  > GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper_short.fna
-  278  samtools faidx GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper_short.fna 
-  293  less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/' | head -20000  | tail | less -S
-  294  less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/'  > final_recode_test.vcf
-  295  grep "#" final_recode_test.vcf > prefix.vcf
-  296  grep -v "#" final_recode_test.vcf > suffix.vcf
-  311  awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}' | less -S  > suffix_clean.vcf
-  312  cat prefix.vcf suffix_clean.vcf  > test_clean.vcf 
-  322  awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}'   > suffix_clean.vcf
-  323  awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}'   | cat prefix.vcf - > vcf_clean.vcf
-  324  vcftools --vcf vcf_clean.vcf 
-  325  vcftools --vcf vcf_clean.vcf --max-missing 1 --recode 
-  326  vcftools --vcf vcf_clean.vcf --max-missing 1.0 --recode 
-  327  vcftools --vcf vcf_clean.vcf 
-  328  less vcf_clean.vcf 
-  329  vcftools --vcf vcf_clean.vcf --het
-  330  less out.het 
-  331  awk '{ $2 = NR; print }' suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
-  332  vcftools --vcf vcf_clean.vcf --het
-  333  less out.het 
-  334  vcftools --vcf final.recode.vcf  --max-missing 1.0 --recode
-  335  less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/'  > final_recode_test.vcf
-  336  vcftools --vcf final_recode_test.vcf --max-missing 1.0 --recode
-  339  grep  -v "#" final_recode_test.vcf >2.vcf 
-  340  grep   "#" final_recode_test.vcf >1.vcf 
-  341  cat 1.vcf 2.vcf > 3.vcf
-  342  vcftools --vcf 3.vcf  --max-missing 1.0 --recode
-  343  grep  -v "#" final_recode_test.vcf > suffix.vcf 
-  344  less suffix.vcf 
-  345  awk '{ $2 = NR; print }' suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
-  346  vcftools --vcf vcf_clean.vcf  --max-missing 1.0 --recode
-  347  cat suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
-  348  vcftools --vcf vcf_clean.vcf  --max-missing 1.0 --recode
-  359  awk '{ $2 = NR; print }' suffix.vcf   | sed -s 's/\s/\t/g'  | cat prefix.vcf - > vcf_clean.vcf
-  360  cat -E vcf_clean.vcf | tr "\t" "*" | grep -v "#" | less -S
-  362  head -20000 vcf_clean.vcf  > test_clean.vcf
-  367  vcftools --vcf test_clean.vcf --max-missing 1.0 --recode
-  369  cat -E vcf_clean.vcf | tr "\t" "*" | grep -v "#" | less -S
- 373  grep -v "#" final.recode.vcf | cut -f 1-2 > outrgoup_from_final_recode_vcf.txt
-
+vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT --recode 
+vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT  --contig JAHLSL010000006.1 --recode
+cat GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | tr N A > GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna
+module load SAMtools
+samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna 
+cat GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna | tr [:lower:] [:upper:] | tr N A |   sed -se  "s/^>JAHL[0-9A-Z.]+//g" | head -n 5
+sed -s -E  "s/^>JAHLSL[0-9.]+//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
+sed -s -e  "s/\PETR//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
+sed -s -E  "s/\sPETR[A-Z0-9.\s]+//g" GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
+sed  's/PETR.*//' GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | head -n 5
+sed  's/\sPETR.*//' GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper.fna | tr [:lower:] [:upper:] | tr N A  > GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper_short.fna
+samtools faidx GCA_025920805.1_Ptraversi_NRM_v1_genomic_upper_short.fna 
+less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/' | head -20000  | tail | less -S
+less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/'  > final_recode_test.vcf
+grep "#" final_recode_test.vcf > prefix.vcf
+grep -v "#" final_recode_test.vcf > suffix.vcf
+awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}' | less -S  > suffix_clean.vcf
+cat prefix.vcf suffix_clean.vcf  > test_clean.vcf 
+awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}'   > suffix_clean.vcf
+awk '{ $2 = NR; print }' suffix.vcf  | awk '{ $4 = "A"; print}' | awk '{ $5 = "T"; print}'   | cat prefix.vcf - > vcf_clean.vcf
+vcftools --vcf vcf_clean.vcf 
+vcftools --vcf vcf_clean.vcf --max-missing 1 --recode 
+vcftools --vcf vcf_clean.vcf --max-missing 1.0 --recode 
+vcftools --vcf vcf_clean.vcf 
+less vcf_clean.vcf 
+vcftools --vcf vcf_clean.vcf --het
+less out.het 
+awk '{ $2 = NR; print }' suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
+vcftools --vcf vcf_clean.vcf --het
+less out.het 
+vcftools --vcf final.recode.vcf  --max-missing 1.0 --recode
+less -S  final.recode.vcf | sed -E  's/JAHLSL[0-9.]+/test/'  > final_recode_test.vcf
+vcftools --vcf final_recode_test.vcf --max-missing 1.0 --recode
+grep  -v "#" final_recode_test.vcf >2.vcf 
+grep   "#" final_recode_test.vcf >1.vcf 
+cat 1.vcf 2.vcf > 3.vcf
+vcftools --vcf 3.vcf  --max-missing 1.0 --recode
+grep  -v "#" final_recode_test.vcf > suffix.vcf 
+less suffix.vcf 
+awk '{ $2 = NR; print }' suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
+vcftools --vcf vcf_clean.vcf  --max-missing 1.0 --recode
+cat suffix.vcf     | cat prefix.vcf - > vcf_clean.vcf
+vcftools --vcf vcf_clean.vcf  --max-missing 1.0 --recode
+awk '{ $2 = NR; print }' suffix.vcf   | sed -s 's/\s/\t/g'  | cat prefix.vcf - > vcf_clean.vcf
+cat -E vcf_clean.vcf | tr "\t" "*" | grep -v "#" | less -S
+head -20000 vcf_clean.vcf  > test_clean.vcf
+vcftools --vcf test_clean.vcf --max-missing 1.0 --recode
+cat -E vcf_clean.vcf | tr "\t" "*" | grep -v "#" | less -S
+-v "#" final.recode.vcf | cut -f 1-2 > outrgoup_from_final_recode_vcf.txt
 ```
 
 
