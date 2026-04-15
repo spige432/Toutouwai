@@ -14,7 +14,7 @@ samtools faidx  GCA_025920805.1_Ptraversi_NRM_v1_genomic.fna -r faidxfile.txt > 
 
 77132 out of range
 ```
-Prepare VCF to be read by SLiM
+Prepare VCF and black robin reference genome to be read by SLiM
 ```
 vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT --recode 
 vcftools --vcf final.recode.vcf --max-missing 1.0 --recode-INFO GT  --contig JAHLSL010000006.1 --recode
@@ -65,14 +65,6 @@ head -20000 vcf_clean.vcf  > test_clean.vcf
 vcftools --vcf test_clean.vcf --max-missing 1.0 --recode
 cat -E vcf_clean.vcf | tr "\t" "*" | grep -v "#" | less -S
 -v "#" final.recode.vcf | cut -f 1-2 > outrgoup_from_final_recode_vcf.txt
-```
-
-
-
-
-Prepare black robin genome to be read by SLiM
-```
-
 ```
 
 
