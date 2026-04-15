@@ -1,4 +1,9 @@
 ```
+Make the VCF  fit the SLiM requirements as described by the SLiM manual.
+Make the reference genome have only the SNP sites that the VCF has.
+Filter the VCF by population, remove all missing data.
+```
+```
 #create VCF that has only one population at a time, and filtered according to the SLiM manual
 vcftools --vcf final.recode.vcf --keep PUonly.txt --minDP 5 --max-missing 0.8 --remove-indels --mac 1 --recode --out PUfiltered 
 # kept 62241 out of a possible 98474 Sites
