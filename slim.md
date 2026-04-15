@@ -66,7 +66,7 @@ SLiM code
 
 
 initialize() {
-	setSeed(10);
+	setSeed(1); //set seed manually to run different but repeatable iterations
 	defineConstant("K", 300);       // carrying capacity
 	defineConstant("R_AGE_M", 1);   // minimum age of reproduction (male)
 	defineConstant("R_AGE_F", 1);   // minimum age of reproduction (female)
@@ -103,7 +103,7 @@ initialize() {
 	p1.individuals.tag = -1;
 	
 	// Create a log file for heterozygosity and other metrics
-	hetFile = community.createLogFile("pur8_fecun5.csv"); //name of output file that gives observed H
+	hetFile = community.createLogFile("pur8_1.csv"); //name of output file that gives observed H
 	
 	// Log every generation
 	hetFile.setLogInterval(1);
@@ -219,7 +219,7 @@ early() {
 	heterozygosity = calcHeterozygosity(p1.haplosomes);
 	cat("Mean E heterozygosity after = " + heterozygosity + "\n");
 	
-	//	p1.haplosomes.outputHaplosomesToVCF("ptm6nm.seed5.vcf"); //if you want to save the end of the SLiM run as a new VCF
+	//	p1.haplosomes.outputHaplosomesToVCF("pur8.seed1.vcf"); //if you want to save the end of the SLiM run as a new VCF
 	
 	sim.simulationFinished();
 }
